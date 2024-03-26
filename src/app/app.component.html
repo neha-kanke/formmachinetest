@@ -1,7 +1,7 @@
 <div class="main text-white">
   <div class="container">
     <div class="row">
-      <div class="col-md-5">
+      <div class="col-md-8 offset-md-2">
         <h1 class="bg-primary text-uppercase text-center">Rective form </h1>
         <form [formGroup]="empform" (ngSubmit)="onaddemp()" class="formclss">
           <div class="form-group">
@@ -26,8 +26,8 @@
             <span class="text-danger" *ngIf="this.f['username'].hasError('spaceerr')">
               {{this.f['username'].errors?.['spaceerr']}}
             </span>
-  
           </div>
+          <!-- email-->
           <div class="form-group">
             <label for="email">email*</label>
             <input type="text" class="form-control" formControlName="email">
@@ -36,18 +36,12 @@
             </span>
             <ng-container *ngIf="this.f['email'].dirty">
               <span class="text-danger" *ngIf="this.f['email'].hasError('pattern')">
-                plz valid email id
+                plz enter valid email
               </span>
-              <span class="text-danger" *ngIf="this.f['email'].hasError('minlength')">
-                the minlength requiredlength is {{this.f['email'].errors?.['minlength'].requiredLength}} and actual
-                length is {{this.f['email'].errors?.['minlength'].actualLength}}
-              </span>
-              <span class="text-danger" *ngIf="this.f['email'].hasError('maxlength')">
-                the maxlength requiredlength is {{this.f['email'].errors?.['maxlength'].requiredLength}} and actual
-                length is {{this.f['email'].errors?.['maxlength'].actualLength}}
-              </span>
+
             </ng-container>
           </div>
+          <!-- Gender-->
           <div class="form-group">
             <h2>gender*</h2>
             <ng-container *ngFor="let gender of genderarry">
@@ -57,6 +51,7 @@
               </label>
             </ng-container>
           </div>
+          <!-- contact-->
           <div class="form-group">
             <label for="contact" class="mr-3">contact*</label>
             <input type="text" class="form-control" formControlName="contact">
@@ -67,6 +62,7 @@
               only 10 number enter here !!!
             </span>
           </div>
+          <!-- emp id-->
           <div class="form-group">
             <label for="empid">empid*</label>
             <input type="text" class="form-control" formControlName="empid" placeholder="N123">
@@ -76,10 +72,10 @@
             <span class="text-danger" *ngIf="this.f['empid'].dirty && this.f['empid'].hasError('empiderr')">
               {{this.f['empid'].errors?.['empiderr']}}
             </span>
-  
           </div>
-  
+
           <div class="row">
+            <!-- current Address-->
             <div class="col-md-6">
               <div formGroupName="currentadress">
                 <h2> current Adresss</h2>
@@ -103,9 +99,10 @@
                 </div>
               </div>
             </div>
+            <!-- Permenant Address-->
             <div class="col-md-6">
               <div formGroupName="permentadress">
-                <h2> permentadress Adresss</h2>
+                <h2> Permanant Adresss</h2>
                 <div class="form-group">
                   <label for="country">country*</label>
                   <select formControlName="country" class="form-control">
@@ -127,6 +124,17 @@
               </div>
             </div>
           </div>
+          <!-- cheack box-->
+          <div class="row">
+            <div class="col-md-6 offset-md-3">
+              <div class="form-group d-flex">
+                <label for="confirmAddress" class="mr-3">currentaddres same as permentadress</label>
+                <input type="checkbox" formControlName="confirmAddress" class="form-control">
+              </div>
+
+            </div>
+          </div>
+          <!-- password -->
           <div class="form-group">
             <label for="password">password*</label>
             <input type="text" class="form-control" formControlName="password">
@@ -134,11 +142,12 @@
               this field is required !!!
             </span>
             <span class="text-danger" *ngIf="this.f['password'].dirty && this.f['password'].hasError('pattern')">
-              plz valid email id
+              plz Enter valid password
             </span>
           </div>
+          <!--   confirm password -->
           <div class="form-group">
-            <label for="confirmpassword">confirmpassword*</label>
+            <label for="confirmpassword">confirm password*</label>
             <input type="text" class="form-control" formControlName="confirmpassword">
             <span class="text-danger"
               *ngIf="this.f['confirmpassword'].touched && this.f['confirmpassword'].hasError('required')">
@@ -146,9 +155,10 @@
             </span>
             <span class="text-danger"
               *ngIf="this.f['confirmpassword'].dirty && this.f['confirmpassword'].value !==this.f['password'].value" th>
-              it should same confirmpassword and password
+              confirm password and password should be same
             </span>
           </div>
+          <!-- Action   -->
           <div class="text-right">
             <button class="btn btn-info" [disabled]="this.empform.invalid">Add emp</button>
           </div>
